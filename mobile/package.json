@@ -24,7 +24,8 @@
     "react-native-web": "0.17.7",
     "@gorhom/bottom-sheet": "^4",
     "react-native-reanimated": "~2.8.0",
-    "react-native-gesture-handler": "~2.2.0"
+    "react-native-gesture-handler": "~2.2.0",
+    "react-native-view-shot": "3.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

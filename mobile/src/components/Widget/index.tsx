@@ -39,7 +39,7 @@ function Widget() {
         backgroundStyle={styles.modal}
         handleIndicatorStyle={styles.indicator}
       >
-        <Success onSendAnotherFeedback={() => {}} />
+        <Form feedbackType='BUG' />
       </BottomSheet>
     </>
   );

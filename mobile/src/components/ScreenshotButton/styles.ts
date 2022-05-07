@@ -19,6 +19,9 @@ export const styles = StyleSheet.create({
   },
   image: {
     width: 40,
-    height: 40
+    height: 40,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: theme.colors.stroke
   }
 });
