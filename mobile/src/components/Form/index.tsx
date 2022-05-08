@@ -33,17 +33,22 @@ export function Form({
 }: Props) {
   const [isSendingFeedback, setIsSendingFeedback] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isTakingScreenshot, setIsTakingScreenshot] = useState(false)
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [comment, setComment] = useState('');
   const feedbackTypeInfo = feedbackTypes[feedbackType];
 
-  function handleScreenshot() {
-    captureScreen({
+  async function handleScreenshot() {
+    setIsTakingScreenshot(true);
+
+    await captureScreen({
       format: 'jpg',
       quality: 0.9
     })
       .then(uri => setScreenshot(uri))
       .catch(error => console.log(error));
+
+    setIsTakingScreenshot(false);
   }
 
   function handleScreenshotRemove() {
@@ -109,6 +114,7 @@ export function Form({
       <View style={styles.footer}>
         <ScreenshotButton
           isDisabled={isDisabled}
+          isLoading={isTakingScreenshot}
           onTakeShot={handleScreenshot}
           onRemoveShot={handleScreenshotRemove}
           screenshot={screenshot}

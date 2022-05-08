@@ -3,7 +3,8 @@ import React from 'react';
 import {
   View,
   TouchableOpacity,
-  Image
+  Image,
+  ActivityIndicator
 } from 'react-native';
 import { theme } from '../../theme';
 
@@ -12,6 +13,7 @@ import { styles } from './styles';
 interface Props {
   screenshot: string | null;
   isDisabled: boolean;
+  isLoading: boolean;
   onTakeShot: () => void;
   onRemoveShot: () => void;
 }
@@ -19,6 +21,7 @@ interface Props {
 export function ScreenshotButton({
   screenshot,
   isDisabled,
+  isLoading,
   onTakeShot,
   onRemoveShot
 }: Props) {
@@ -42,11 +45,22 @@ export function ScreenshotButton({
               style={styles.removeIcon}
             />
           </View>) : (
-          <Camera
-            size={24}
-            color={theme.colors.text_primary}
-            weight="bold"
-          />)
+          <>
+            {
+              isLoading ? (
+                <ActivityIndicator
+                  color={theme.colors.text_on_brand_color}
+                />
+              ) : (
+                <Camera
+                  size={24}
+                  color={theme.colors.text_primary}
+                  weight="bold"
+                />
+              )
+            }
+          </>
+        )
       }
     </TouchableOpacity>
   );
