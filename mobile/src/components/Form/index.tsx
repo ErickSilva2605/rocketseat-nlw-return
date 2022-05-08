@@ -18,6 +18,7 @@ import { styles } from './styles';
 import { theme } from '../../theme';
 import { feedbackTypes } from '../../utils/feedbackTypes';
 import { api } from '../../libs/api';
+import { Copyright } from '../Copyright';
 
 interface Props {
   feedbackType: FeedbackType;
@@ -31,6 +32,7 @@ export function Form({
   onFeedbackSent
 }: Props) {
   const [isSendingFeedback, setIsSendingFeedback] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [screenshot, setScreenshot] = useState<string | null>(null);
   const [comment, setComment] = useState('');
   const feedbackTypeInfo = feedbackTypes[feedbackType];
@@ -67,7 +69,6 @@ export function Form({
       });
 
       onFeedbackSent();
-      console.log('aqui');
     } catch (error) {
       console.log(error);
       setIsSendingFeedback(false);
@@ -100,19 +101,25 @@ export function Form({
         style={styles.input}
         placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..."
         placeholderTextColor={theme.colors.text_secondary}
-        onChangeText={setComment}
+        onChangeText={(text) => {
+          setComment(text);
+          setIsDisabled(text.trim().length <= 2);
+        }}
       />
       <View style={styles.footer}>
         <ScreenshotButton
+          isDisabled={isDisabled}
           onTakeShot={handleScreenshot}
           onRemoveShot={handleScreenshotRemove}
           screenshot={screenshot}
         />
         <Button
+          isDisabled={isDisabled}
           onPress={handleSendFeedback}
           isLoading={isSendingFeedback}
         />
       </View>
+      <Copyright />
     </View>
   );
 }

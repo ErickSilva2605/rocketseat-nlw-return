@@ -4,11 +4,11 @@ import { theme } from '../../theme';
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
     flexDirection: 'row',
-    marginVertical: 16
+    marginBottom: 16
   },
   titleContainer: {
     flex: 1,
@@ -41,5 +41,8 @@ export const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     marginBottom: 16
+  },
+  button: {
+    opacity: 0.5
   }
 });

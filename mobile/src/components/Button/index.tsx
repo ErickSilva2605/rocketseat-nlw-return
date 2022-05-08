@@ -11,12 +11,14 @@ import { styles } from './styles';
 
 interface Props extends TouchableOpacityProps {
   isLoading: boolean;
+  isDisabled: boolean;
 }
 
-export function Button({ isLoading, ...rest }: Props) {
+export function Button({ isLoading, isDisabled, ...rest }: Props) {
   return (
     <TouchableOpacity
-      style={styles.container}
+      disabled={isDisabled}
+      style={[styles.container, isDisabled ? { opacity: 0.5 } : {}]}
       {...rest}
     >
       {
