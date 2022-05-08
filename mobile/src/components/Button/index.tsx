@@ -13,9 +13,12 @@ interface Props extends TouchableOpacityProps {
   isLoading: boolean;
 }
 
-export function Button({ isLoading }: Props) {
+export function Button({ isLoading, ...rest }: Props) {
   return (
-    <TouchableOpacity style={styles.container} >
+    <TouchableOpacity
+      style={styles.container}
+      {...rest}
+    >
       {
         isLoading ? (
           <ActivityIndicator
