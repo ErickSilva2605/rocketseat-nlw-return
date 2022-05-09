@@ -120,7 +120,7 @@ export function Form({
           screenshot={screenshot}
         />
         <Button
-          isDisabled={isDisabled}
+          isDisabled={isDisabled || isSendingFeedback}
           onPress={handleSendFeedback}
           isLoading={isSendingFeedback}
         />
